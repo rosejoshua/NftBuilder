@@ -1,0 +1,3 @@
+public enum TraitType {
+    BACKGROUND, SKIN, BASE, CLOTHES, EXPRESSION, HEAD, ARMS
+}
