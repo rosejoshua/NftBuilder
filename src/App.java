@@ -157,28 +157,6 @@ public class App {
 
         System.out.println("Errors during processing: " + processErrors);
 
-        //Test output of frames
-//        public Trait getBackgroundTrait(int index){
-//            return backgroundTraits.get(index);
-//        }
-//        public Trait getSkinTrait(int index){
-//            return skinTraits.get(index);
-//        }
-//        public Trait getBaseTrait(int index){
-//            return baseTraits.get(index);
-//        }
-//        public Trait getClothesTrait(int index){
-//            return clothesTraits.get(index);
-//        }
-//        public Trait getExpressionTrait(int index){
-//            return expressionTraits.get(index);
-//        }
-//        public Trait getHeadTrait(int index){
-//            return headTraits.get(index);
-//        }
-//        public Trait getArmsTrait(int index){
-//            return armsTraits.get(index);
-//        }
 
         for (Trait trait :
                 traitPool.getBackgroundTraits()) {
