@@ -35,6 +35,34 @@ public class TraitPool {
         }
     }
 
+    public ArrayList<Trait> getBackgroundTraits() {
+        return backgroundTraits;
+    }
+
+    public ArrayList<Trait> getSkinTraits() {
+        return skinTraits;
+    }
+
+    public ArrayList<Trait> getBaseTraits() {
+        return baseTraits;
+    }
+
+    public ArrayList<Trait> getClothesTraits() {
+        return clothesTraits;
+    }
+
+    public ArrayList<Trait> getExpressionTraits() {
+        return expressionTraits;
+    }
+
+    public ArrayList<Trait> getHeadTraits() {
+        return headTraits;
+    }
+
+    public ArrayList<Trait> getArmsTraits() {
+        return armsTraits;
+    }
+
     public Trait getBackgroundTrait(int index){
         return backgroundTraits.get(index);
     }
@@ -80,4 +108,32 @@ public class TraitPool {
     }
     public TraitPool() {
     }
+
+    @Override
+    public String toString(){
+        StringBuilder sb = new StringBuilder();
+        for (Trait trait : backgroundTraits) {
+           sb.append(trait.toString());
+        }
+        for (Trait trait : skinTraits) {
+            sb.append(trait.toString());
+        }
+        for (Trait trait : baseTraits) {
+            sb.append(trait.toString());
+        }
+        for (Trait trait : clothesTraits) {
+            sb.append(trait.toString());
+        }
+        for (Trait trait : expressionTraits) {
+            sb.append(trait.toString());
+        }
+        for (Trait trait : headTraits) {
+            sb.append(trait.toString());
+        }
+        for (Trait trait : armsTraits) {
+            sb.append(trait.toString());
+        }
+        return sb.toString();
+    }
+
 }

@@ -1,10 +1,11 @@
-import java.io.*;
-import java.util.Scanner;
 import javax.imageio.ImageIO;
+import java.awt.*;
+import java.awt.image.BufferedImage;
+import java.io.*;
 
 public class App {
 
-    public static void main(String[] args) {
+    public static void main(String[] args) throws IOException {
 
         BufferedReader reader;
         File file;
@@ -34,6 +35,7 @@ public class App {
                 String rarityString;
                 int layerPriority;
                 int numAnimationFrames;
+                TraitFrame[] tempTraitFrames;
 
                 file = new File( imageDirectory + (i+1) + "\\specs.txt");
                 reader = new BufferedReader(new FileReader(file));
@@ -78,8 +80,8 @@ public class App {
                     default:
                         processErrors++;
                         System.out.println("ERROR: unmatched trait String " + traitTypeString);
+                        traitType = TraitType.ERROR;
                 }
-
                 switch (rarityString){
                     case "PLATINUM":
                         rarity = Rarity.PLATINUM;
@@ -93,7 +95,50 @@ public class App {
                     case "BRONZE":
                         rarity = Rarity.BRONZE;
                         break;
+                    default:
+                        processErrors++;
+                        System.out.println("ERROR: unmatched rarity String " + rarityString);
+                        rarity = Rarity.ERROR;
                 }
+
+                if (numPhotos % numAnimationFrames > 0 ){
+                    System.out.println("ERROR: Number of photos in folder #" + i+1 + " does not divide" +
+                            "evenly by number of frames: " + numAnimationFrames);
+                    processErrors++;
+                }
+                else if (numAnimationFrames > numPhotos ){
+                    System.out.println("ERROR: Number of animation frames in in folder #" + (i+1) + " > number of photos") ;
+                    processErrors++;
+                }
+
+                tempTraitFrames = new TraitFrame[numAnimationFrames];
+
+                for (int j = 0; j < numAnimationFrames; j++) {
+
+                    BufferedImage outputImage = new BufferedImage(width, height, BufferedImage.TYPE_INT_ARGB);
+                    Graphics graphics = outputImage.getGraphics();
+
+                    for (int k = 0; k < numPhotos/numAnimationFrames; k++) {
+
+                        try {
+                            BufferedImage sourceLayer = ImageIO.read(new File(imageDirectory + (i+1) + "\\" +
+                                    ((j+1)+(k*numAnimationFrames)) +".png"));
+
+                            graphics.drawImage(sourceLayer, 0, 0, null);
+
+                        } catch (Exception e) {
+                            processErrors++;
+                            System.out.println("ERROR: Exception trying to draw image: " + e.getMessage());
+                            e.printStackTrace();
+                        }
+                    }
+                    TraitFrame tempTraitFrame = new TraitFrame(outputImage, (j+1));
+                    tempTraitFrames[j] = tempTraitFrame;
+                    graphics.dispose();
+                }
+                traitPool.addTrait(
+                        new Trait(traitType, rarity, tempTraitFrames, layerPriority, i+1)
+                );
 
             } catch (IOException e) {
                 e.printStackTrace();
@@ -109,6 +154,62 @@ public class App {
         System.out.println("Unique Expression Traits Input: " + numExpressionProcessed);
         System.out.println("Unique Head Traits Input: " + numHeadProcessed);
         System.out.println("Unique Arms Traits Input: " + numArmsProcessed);
+
+        System.out.println("Errors during processing: " + processErrors);
+
+        //Test output of frames
+//        public Trait getBackgroundTrait(int index){
+//            return backgroundTraits.get(index);
+//        }
+//        public Trait getSkinTrait(int index){
+//            return skinTraits.get(index);
+//        }
+//        public Trait getBaseTrait(int index){
+//            return baseTraits.get(index);
+//        }
+//        public Trait getClothesTrait(int index){
+//            return clothesTraits.get(index);
+//        }
+//        public Trait getExpressionTrait(int index){
+//            return expressionTraits.get(index);
+//        }
+//        public Trait getHeadTrait(int index){
+//            return headTraits.get(index);
+//        }
+//        public Trait getArmsTrait(int index){
+//            return armsTraits.get(index);
+//        }
+
+        for (Trait trait :
+                traitPool.getBackgroundTraits()) {
+            trait.export(imageDirectory + "output\\");
+        }
+        for (Trait trait :
+                        traitPool.getSkinTraits()) {
+                    trait.export(imageDirectory + "output\\");
+                }
+        for (Trait trait :
+                        traitPool.getBaseTraits()) {
+                    trait.export(imageDirectory + "output\\");
+                }
+        for (Trait trait :
+                        traitPool.getClothesTraits()) {
+                    trait.export(imageDirectory + "output\\");
+                }
+        for (Trait trait :
+                        traitPool.getExpressionTraits()) {
+                    trait.export(imageDirectory + "output\\");
+                }
+        for (Trait trait :
+                        traitPool.getHeadTraits()) {
+                    trait.export(imageDirectory + "output\\");
+                }
+        for (Trait trait :
+                        traitPool.getArmsTraits()) {
+                    trait.export(imageDirectory + "output\\");
+                }
+
+        System.out.println(traitPool);
 
     }
 
