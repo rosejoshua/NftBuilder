@@ -48,6 +48,10 @@ public class Trait {
         return traitType;
     }
 
+    public Rarity getRarity() {
+        return rarity;
+    }
+
     @Override
     public String toString() {
         StringBuilder sb = new StringBuilder();

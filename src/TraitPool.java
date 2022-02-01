@@ -1,66 +1,69 @@
 import java.util.ArrayList;
+import java.util.Collection;
+import java.util.HashMap;
+import java.util.Map;
 
 public class TraitPool {
 
-    private ArrayList<Trait> backgroundTraits = new ArrayList<>();
-    private ArrayList<Trait> skinTraits = new ArrayList<>();
-    private ArrayList<Trait> baseTraits = new ArrayList<>();
-    private ArrayList<Trait> clothesTraits = new ArrayList<>();
-    private ArrayList<Trait> expressionTraits = new ArrayList<>();
-    private ArrayList<Trait> headTraits = new ArrayList<>();
-    private ArrayList<Trait> armsTraits = new ArrayList<>();
+    private HashMap<Integer, Trait> backgroundTraits =new HashMap<>();
+    private HashMap<Integer, Trait> skinTraits = new HashMap<>();
+    private HashMap<Integer, Trait> baseTraits = new HashMap<>();
+    private HashMap<Integer, Trait> clothesTraits = new HashMap<>();
+    private HashMap<Integer, Trait> expressionTraits = new HashMap<>();
+    private HashMap<Integer, Trait> headTraits = new HashMap<>();
+    private HashMap<Integer, Trait> armsTraits = new HashMap<>();
 
-    public void addTrait(Trait trait) {
+    public void addTrait(Integer i, Trait trait) {
         switch (trait.getTraitType()){
-            case BACKGROUND: backgroundTraits.add(trait);
+            case BACKGROUND: backgroundTraits.put(i, trait);
                 break;
 
-            case SKIN: skinTraits.add(trait);
+            case SKIN: skinTraits.put(i, trait);
                 break;
 
-            case BASE: baseTraits.add(trait);
+            case BASE: baseTraits.put(i, trait);
                 break;
 
-            case CLOTHES: clothesTraits.add(trait);
+            case CLOTHES: clothesTraits.put(i, trait);
                 break;
 
-            case EXPRESSION: expressionTraits.add(trait);
+            case EXPRESSION: expressionTraits.put(i, trait);
                 break;
 
-            case HEAD: headTraits.add(trait);
+            case HEAD: headTraits.put(i, trait);
                 break;
 
-            case ARMS: armsTraits.add(trait);
+            case ARMS: armsTraits.put(i, trait);
                 break;
         }
     }
 
-    public ArrayList<Trait> getBackgroundTraits() {
-        return backgroundTraits;
+    public Collection<Trait> getBackgroundTraits() {
+        return backgroundTraits.values();
     }
 
-    public ArrayList<Trait> getSkinTraits() {
-        return skinTraits;
+    public Collection<Trait> getSkinTraits() {
+        return skinTraits.values();
     }
 
-    public ArrayList<Trait> getBaseTraits() {
-        return baseTraits;
+    public Collection<Trait> getBaseTraits() {
+        return baseTraits.values();
     }
 
-    public ArrayList<Trait> getClothesTraits() {
-        return clothesTraits;
+    public Collection<Trait> getClothesTraits() {
+        return clothesTraits.values();
     }
 
-    public ArrayList<Trait> getExpressionTraits() {
-        return expressionTraits;
+    public Collection<Trait> getExpressionTraits() {
+        return expressionTraits.values();
     }
 
-    public ArrayList<Trait> getHeadTraits() {
-        return headTraits;
+    public Collection<Trait> getHeadTraits() {
+        return headTraits.values();
     }
 
-    public ArrayList<Trait> getArmsTraits() {
-        return armsTraits;
+    public Collection<Trait> getArmsTraits() {
+        return armsTraits.values();
     }
 
     public Trait getBackgroundTrait(int index){
@@ -112,25 +115,25 @@ public class TraitPool {
     @Override
     public String toString(){
         StringBuilder sb = new StringBuilder();
-        for (Trait trait : backgroundTraits) {
+        for (Map.Entry<Integer, Trait> trait : backgroundTraits.entrySet()) {
            sb.append(trait.toString());
         }
-        for (Trait trait : skinTraits) {
+        for (Map.Entry<Integer, Trait> trait : skinTraits.entrySet()) {
             sb.append(trait.toString());
         }
-        for (Trait trait : baseTraits) {
+        for (Map.Entry<Integer, Trait> trait : baseTraits.entrySet()) {
             sb.append(trait.toString());
         }
-        for (Trait trait : clothesTraits) {
+        for (Map.Entry<Integer, Trait> trait : clothesTraits.entrySet()) {
             sb.append(trait.toString());
         }
-        for (Trait trait : expressionTraits) {
+        for (Map.Entry<Integer, Trait> trait : expressionTraits.entrySet()) {
             sb.append(trait.toString());
         }
-        for (Trait trait : headTraits) {
+        for (Map.Entry<Integer, Trait> trait : headTraits.entrySet()) {
             sb.append(trait.toString());
         }
-        for (Trait trait : armsTraits) {
+        for (Map.Entry<Integer, Trait> trait : armsTraits.entrySet()) {
             sb.append(trait.toString());
         }
         return sb.toString();
