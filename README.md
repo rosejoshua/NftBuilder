@@ -7,4 +7,4 @@ This technically isn't an NFT building tool (yet...), but chances are if you're 
 
 It's not quite ready yet...I've tested the code to build PNGs by layer but it is not yet refactored to create the PNGs in App.Main().
 
-More to follow. Thanks for reading and don't forget to call your mother. 
+### More to follow. Thanks for reading and don't forget to call your mother. 
