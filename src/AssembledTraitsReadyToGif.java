@@ -5,7 +5,8 @@ public class AssembledTraitsReadyToGif {
     private Trait skinTrait;
     private Trait baseTrait;
     private Trait clothesTrait;
-    private Trait expressionTrait;
+    private Trait eyesTrait;
+    private Trait mouthTrait;
     private Trait HeadTrait;
     private Trait ArmsTrait;
 
@@ -15,29 +16,31 @@ public class AssembledTraitsReadyToGif {
 
     public AssembledTraitsReadyToGif(Trait backgroundTrait,
                                      Trait skinTrait, Trait baseTrait, Trait clothesTrait,
-                                     Trait expressionTrait, Trait headTrait,
+                                     Trait eyesTrait, Trait mouthTrait, Trait headTrait,
                                      Trait armsTrait) {
 
         this.backgroundTrait = backgroundTrait;
         this.skinTrait = skinTrait;
         this.baseTrait = baseTrait;
         this.clothesTrait = clothesTrait;
-        this.expressionTrait = expressionTrait;
+        this.eyesTrait = eyesTrait;
+        this.mouthTrait = mouthTrait;
         this.HeadTrait = headTrait;
         this.ArmsTrait = armsTrait;
 
         hashId = "" + backgroundTrait.getTraitId() + "-" + skinTrait.getTraitId() + "-" + baseTrait.getTraitId() + "-" +
-        clothesTrait.getTraitId() + "-" + expressionTrait.getTraitId() + "-" + headTrait.getTraitId() + ":" + armsTrait.getTraitId();
+        clothesTrait.getTraitId() + "-" + eyesTrait.getTraitId() + mouthTrait.getTraitId() + "-" + headTrait.getTraitId() + ":" + armsTrait.getTraitId();
     }
 
-    public AssembledTraitsReadyToGif(Trait backgroundTrait, Trait baseTrait, Trait expressionTrait, Trait armsTrait) {
+    // FIXME: 2/2/2022 delete after testing complete
+    public AssembledTraitsReadyToGif(Trait backgroundTrait, Trait baseTrait, Trait eyesTrait, Trait armsTrait) {
 
         this.backgroundTrait = backgroundTrait;
         this.baseTrait = baseTrait;
-        this.expressionTrait = expressionTrait;
+        this.eyesTrait = eyesTrait;
         this.ArmsTrait = armsTrait;
 
-        hashId = "" + backgroundTrait.getTraitId() + "-" + baseTrait.getTraitId() + "-" + expressionTrait.getTraitId() +
+        hashId = "" + backgroundTrait.getTraitId() + "-" + baseTrait.getTraitId() + "-" + eyesTrait.getTraitId() +
                 "-"  + armsTrait.getTraitId();
     }
 

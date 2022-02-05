@@ -21,23 +21,20 @@ public class Trait {
         this.traitId = traitId;
     }
 
-    public void export(String baseFilePath) throws IOException {
-        File outputDirectory = new File(baseFilePath + traitId + "\\");
-        if (!outputDirectory.exists()){
-            outputDirectory.mkdirs();
-        }
-
-        for (int i = 0; i < traitFrames.length; i++) {
-            ImageIO.write(traitFrames[i].getImage(), "PNG", new File(outputDirectory,traitFrames[i].getSequenceNumber() + ".png"));
-        }
-    }
-
     public int getNumTimesUsed() {
         return numTimesUsed;
     }
 
     public void incrementNumTimesUsed() {
         numTimesUsed++;
+    }
+
+    public TraitFrame[] getTraitFrames() {
+        return traitFrames;
+    }
+
+    public int getLayerPriority() {
+        return layerPriority;
     }
 
     public int getTraitId() {
